@@ -5,42 +5,12 @@ var lakers;
 
 const url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2016-2017-regular/overall_team_standings.json?teamstats=W,L,PTS,PTSA&team=105";
 
-// fetch(url)
-//   .then((resp) => resp.json())
-//   .then(function(data)
-//   {
-//     // Here you get the data to modify as you please
-//   })
-//   .catch(function(error) {
-//     // If there is any error you will catch them here
-//   });
-//
-// $(document).ready(function()
-// {
-//   setup();
-//   console.log("It works");
-// });
-//
-// function setup()
-// {
-//   loadJSON("https://api.mysportsfeeds.com/v1.2/pull/nba/2016-2017-regular/overall_team_standings.json?teamstats=W,L,PTS,PTSA&team=105", gotData);
-// }
-//
-// function gotData(data)
-// {
-//   lakers = data;
-// }
-//
-// function make_base_auth(user, password) {
-//   var tok = user + ':' + password;
-//   var hash = btoa(tok);
-//   return "Basic " + hash;
-// }
+
 
 
 $.ajax({
   type: "GET",
-  url: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2016-2017-regular/overall_team_standings.json?teamstats=W,L,PTS,PTSA&team=105',
+  url: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2016-2017-regular/full_game_schedule.json?team=LAL',
   dataType: 'json',
   headers: {
     "Authorization": "Basic " + btoa('nsimone' + ":" + 'sports1998')
@@ -48,7 +18,17 @@ $.ajax({
   success: function (data){
     console.log('Got Data!');
     console.log(data);
-    console.log(data.team['ID']);
+    console.log(data.fullgameschedule.gameentry[0].time);
+    console.log(data.fullgameschedule.gameentry[0].date);
+    // $('#output-text').append(data.fullgameschedule.gameentry[0].date);
+    console.log(data.fullgameschedule.gameentry[0].awayTeam['City']);
+    for(var i = 0; i < 82; i++)
+    {
+        $('#output-text').append(data.fullgameschedule.gameentry[i].awayTeam['City'] + " vs "
+            + data.fullgameschedule.gameentry[i].homeTeam['City'] + "\n");
+    // $('#output-text').append('\n');
+    }
+    // console.log(data.overallteamstandings['lastUpdatedOn']);
     },
     error: function (xhr, ajaxOptions, thrownError) {
         console.log('error');
