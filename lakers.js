@@ -25,7 +25,8 @@ $.ajax({
     for(var i = 0; i < 82; i++)
     {
         $('#output-text').append(data.fullgameschedule.gameentry[i].awayTeam['City'] + " vs "
-            + data.fullgameschedule.gameentry[i].homeTeam['City'] + "\n");
+            + data.fullgameschedule.gameentry[i].homeTeam['City']);
+        $('#output-text').append('\n');
     // $('#output-text').append('\n');
     }
     // console.log(data.overallteamstandings['lastUpdatedOn']);
@@ -35,4 +36,23 @@ $.ajax({
         alert(xhr.status);
         alert(thrownError);
      }
+});
+
+$.ajax({
+  type: "GET",
+  url: url,
+  dataType: 'json',
+  headers:
+  {
+    "Authorization": "Basic " + btoa('nsimone' + ":" + 'sports1998')
+  },
+  success: function (data)
+  {
+    console.log('Got Data2!');
+  },
+  error: function (xhr, ajaxOptions, thrownError) {
+      console.log('error');
+      alert(xhr.status);
+      alert(thrownError);
+   }
 });
