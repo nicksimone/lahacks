@@ -1,7 +1,7 @@
 const USERNAME = "nsimone";
 const PASSWORD = "sports1998";
 
-var dodgers;
+var rams;
 
 const url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2016-2017-regular/overall_team_standings.json?teamstats=W,L,PTS,PTSA&team=105";
 
@@ -40,7 +40,7 @@ const url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2016-2017-regular/overa
 
 $.ajax({
   type: "GET",
-  url: 'https://api.mysportsfeeds.com/v1.2/pull/mlb/2017-regular/overall_team_standings.json?teamstats=W,L,RF,RA&team=LAD',
+  url: 'https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/overall_team_standings.json?teamstats=W,L,T,PF,PA&team=LA',
   dataType: 'json',
   headers: {
     "Authorization": "Basic " + btoa('nsimone' + ":" + 'sports1998')
@@ -48,16 +48,7 @@ $.ajax({
   success: function (data){
     console.log('Got Data!');
     console.log(data);
-    $('#team-city').text(data.overallteamstandings.teamstandingsentry[0].team['City']);
-    $('#team-name').text(data.overallteamstandings.teamstandingsentry[0].team['Name']);
-    $('#team-abbrev').text(data.overallteamstandings.teamstandingsentry[0].team['Abbreviation']);
-    $('#rank').append(data.overallteamstandings.teamstandingsentry[0].rank);
-    $('#games-played').append(data.overallteamstandings.teamstandingsentry[0].stats.GamesPlayed['#text']);
-    $('#wins').append(data.overallteamstandings.teamstandingsentry[0].stats.Wins['#text']);
-    $('#losses').append(data.overallteamstandings.teamstandingsentry[0].stats.Losses['#text']);
-    $('#runs-for').append(data.overallteamstandings.teamstandingsentry[0].stats.RunsFor['#text']);
-    $('#runs-against').append(data.overallteamstandings.teamstandingsentry[0].stats.RunsAgainst['#text']);
-    console.log(data);
+    console.log(data.team['ID']);
     },
     error: function (xhr, ajaxOptions, thrownError) {
         console.log('error');
