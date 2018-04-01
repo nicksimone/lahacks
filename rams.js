@@ -48,7 +48,16 @@ $.ajax({
   success: function (data){
     console.log('Got Data!');
     console.log(data);
-    console.log(data.team['ID']);
+    $('#team-city').text(data.overallteamstandings.teamstandingsentry[0].team['City']);
+    $('#team-name').text(data.overallteamstandings.teamstandingsentry[0].team['Name']);
+    $('#team-abbrev').text(data.overallteamstandings.teamstandingsentry[0].team['Abbreviation']);
+    $('#rank').append(data.overallteamstandings.teamstandingsentry[0].rank);
+    $('#games-played').append(data.overallteamstandings.teamstandingsentry[0].stats.GamesPlayed['#text']);
+    $('#wins').append(data.overallteamstandings.teamstandingsentry[0].stats.Wins['#text']);
+    $('#losses').append(data.overallteamstandings.teamstandingsentry[0].stats.Losses['#text']);
+    $('#ties').append(data.overallteamstandings.teamstandingsentry[0].stats.Ties['#text']);
+    $('#points-for').append(data.overallteamstandings.teamstandingsentry[0].stats.PointsFor['#text']);
+    $('#points-against').append(data.overallteamstandings.teamstandingsentry[0].stats.PointsAgainst['#text']);
     },
     error: function (xhr, ajaxOptions, thrownError) {
         console.log('error');
